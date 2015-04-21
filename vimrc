@@ -35,9 +35,9 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
-set encoding=utf-8
 autocmd VimResized * wincmd =  " auto equalize windows
 
+set encoding=utf-8
 set guifont=Sauce\ Code\ Powerline:h11
 
 " ================ General Config ====================
@@ -46,8 +46,6 @@ set number                      "Line numbers are good
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
-set showmode                    "Show current mode down the bottom
-"set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 
@@ -66,20 +64,15 @@ autocmd FileType c,cpp,java,php,ruby,python,javascript autocmd BufWritePre <buff
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
-" Change leader to a comma because the backslash is too far away
-" That means all \x commands turn into ,x
-" The mapleader has to be set before vundle starts loading all
-" the plugins.
+" Change leader to a comma
 let mapleader=","
 
 " ================ Turn Off Swap Files ==============
-
 set noswapfile
 set nobackup
 set nowb
 
 " ================ Indentation ======================
-
 set autoindent
 set smartindent
 set smarttab
@@ -95,7 +88,6 @@ set wrap       "Wrap lines
 set linebreak    "Wrap lines at convenient points
 
 " ================ Completion =======================
-
 set wildmode=list:longest
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
 set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
