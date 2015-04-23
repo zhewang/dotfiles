@@ -59,6 +59,17 @@ endfun
 
 autocmd FileType c,cpp,java,php,ruby,python,javascript,sql autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
+" ================ Auto Update .vimrc for All Vim server ===============
+function! UpdateVimRC()
+ for server in split(serverlist())
+     call remote_send(server, '<Esc>:source $MYVIMRC<CR>')
+ endfor
+endfunction
+augroup myvimrchooks
+au!
+autocmd bufwritepost .vimrc call UpdateVimRC()
+augroup END
+
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
