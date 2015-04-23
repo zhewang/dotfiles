@@ -137,3 +137,6 @@ map <c-h> <c-w>h
 
 " ============= Session ================
 let g:session_autosave = 'yes'
+
+" ============= PyMode =============
+set completeopt=menu " Disable auto doc
