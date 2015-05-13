@@ -21,6 +21,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+Plugin 'pangloss/vim-javascript'
 
 " All of the Plugins must be added before the following line
 call vundle#end()            " required
