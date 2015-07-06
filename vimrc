@@ -11,7 +11,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'klen/python-mode'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
@@ -149,6 +148,3 @@ map <c-h> <c-w>h
 
 " ============= Session ================
 let g:session_autosave = 'yes'
-
-" ============= PyMode =============
-set completeopt=menu " Disable auto doc
