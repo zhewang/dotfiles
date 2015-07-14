@@ -21,6 +21,7 @@ Plugin 'vim-scripts/TaskList.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'pangloss/vim-javascript'
+" Plugin 'scrooloose/syntastic'
 
 " All of the Plugins must be added before the following line
 call vundle#end()            " required
@@ -28,6 +29,7 @@ filetype plugin indent on    " required
 
 " Put your non-Plugin stuff after this line
 """"""""""""""""""""""""""""""""""""""""""""""""
+let $PATH=$PATH . ':/usr/local/bin'
 
 " ================ GUI =============================
 syntax enable
@@ -95,8 +97,8 @@ set expandtab
 filetype plugin on
 filetype indent on
 
-set wrap       "Wrap lines
-set linebreak    "Wrap lines at convenient points
+set nowrap       "Don't wrap lines
+"set linebreak    "Wrap lines at convenient points
 
 " ================ Completion =======================
 set wildmode=list:longest
@@ -124,21 +126,21 @@ set guioptions-=L
 map <C-n> :NERDTreeToggle<CR>
 
 " ================ vim-airline ===========
-let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 let g:airline_powerline_fonts = 1
 
 " buffer
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#buffer_idx_mode = 1
+"nmap <leader>1 <Plug>AirlineSelectTab1
+"nmap <leader>2 <Plug>AirlineSelectTab2
+"nmap <leader>3 <Plug>AirlineSelectTab3
+"nmap <leader>4 <Plug>AirlineSelectTab4
+"nmap <leader>5 <Plug>AirlineSelectTab5
+"nmap <leader>6 <Plug>AirlineSelectTab6
+"nmap <leader>7 <Plug>AirlineSelectTab7
+"nmap <leader>8 <Plug>AirlineSelectTab8
+"nmap <leader>9 <Plug>AirlineSelectTab9
 
 " ============= Window =================
 map <c-j> <c-w>j
@@ -148,3 +150,13 @@ map <c-h> <c-w>h
 
 " ============= Session ================
 let g:session_autosave = 'yes'
+
+" ============== Syntastic =================
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
