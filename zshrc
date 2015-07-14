@@ -54,6 +54,10 @@ export PATH="/usr/local/bin:/usr/bin:/usr/sbin:/bin:/usr/local/mysql/bin/"
 
 source $ZSH/oh-my-zsh.sh
 
+# Pylint
+LC_CTYPE=en_US.UTF-8
+export LC_CTYPE
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
