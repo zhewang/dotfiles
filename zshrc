@@ -49,7 +49,7 @@ plugins=(git osx)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/usr/sbin:/bin:/usr/local/mysql/bin/"
+export PATH="/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/mysql/bin/"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -58,30 +58,10 @@ source $ZSH/oh-my-zsh.sh
 LC_CTYPE=en_US.UTF-8
 export LC_CTYPE
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias py3env="source ~/Envs/py3/bin/activate"
 alias py2env="source ~/Envs/py2/bin/activate"
 alias sshcs="ssh zhew@lectura.cs.arizona.edu"
+alias startaria2="aria2c --conf-path=/Users/zhe/.aria2/aria2.conf"
