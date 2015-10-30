@@ -36,6 +36,7 @@ syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+set colorcolumn=80
 
 autocmd VimResized * wincmd =  " auto equalize windows
 
@@ -97,8 +98,8 @@ set expandtab
 filetype plugin on
 filetype indent on
 
-set nowrap       "Don't wrap lines
-"set linebreak    "Wrap lines at convenient points
+"set nowrap       "Don't wrap lines
+set linebreak    "Wrap lines at convenient points
 
 " ================ Completion =======================
 set wildmode=list:longest
