@@ -21,6 +21,8 @@ Plugin 'vim-scripts/TaskList.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'pangloss/vim-javascript'
+Plugin 'lervag/vimtex'
+Plugin 'valloric/youcompleteme'
 " Plugin 'scrooloose/syntastic'
 
 " All of the Plugins must be added before the following line
@@ -161,3 +163,17 @@ let g:session_autosave = 'yes'
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
+
+" =============== youcompleteme =============
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+            \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+            \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+            \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+            \ 're!\\(include(only)?|input){[^}]*'
+            \ ]
+
+" =============== youcompleteme =============
+let g:vimtex_quickfix_ignore_all_warnings = 1

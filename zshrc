@@ -49,7 +49,7 @@ plugins=(git osx)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/mysql/bin/"
+export PATH="/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/mysql/bin/:/usr/local/texlive/2015/bin/x86_64-darwin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
