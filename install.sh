@@ -8,7 +8,7 @@
 
 dir=~/Projects/dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
-files="vimrc zshrc aria2.conf"    # list of files/folders to symlink in homedir
+files="vimrc zshrc aria2.conf ycm_extra_conf.py"    # list of files/folders to symlink in homedir
 
 ##########
 
