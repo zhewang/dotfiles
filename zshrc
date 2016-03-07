@@ -63,6 +63,8 @@ export LC_CTYPE
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias py3env="source ~/Envs/py3/bin/activate"
 alias py2env="source ~/Envs/py2/bin/activate"
-alias sshcs="ssh zhew@lectura.cs.arizona.edu"
 alias startaria2="aria2c --conf-path=/Users/zhe/.aria2/aria2.conf"
-alias sshnoao="ssh antares@munin.tuc.noao.edu"
+
+alias lectura="ssh lectura"
+alias mamba="ssh mamba"
+alias noao="ssh antares@munin"
