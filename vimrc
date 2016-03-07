@@ -164,7 +164,7 @@ let g:session_autosave = 'yes'
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 
-" =============== youcompleteme =============
+" =============== VimTex =============
 if !exists('g:ycm_semantic_triggers')
     let g:ycm_semantic_triggers = {}
 endif
@@ -175,5 +175,16 @@ let g:ycm_semantic_triggers.tex = [
             \ 're!\\(include(only)?|input){[^}]*'
             \ ]
 
-" =============== youcompleteme =============
 let g:vimtex_quickfix_ignore_all_warnings = 1
+
+" =============== YouCompleteMe =============
+set completeopt-=preview  
+
+nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>  
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>  
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>  
+
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'  
+let g:ycm_confirm_extra_conf=0  
+let g:ycm_cache_omnifunc=0  
+let g:ycm_complete_in_comments=1  
