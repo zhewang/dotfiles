@@ -126,7 +126,7 @@ set guioptions-=r
 set guioptions-=L
 
 " ================ NERDTree ==============
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle %<CR>
 
 " ================ vim-airline ===========
 set laststatus=2
