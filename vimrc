@@ -43,7 +43,7 @@ set colorcolumn=80
 autocmd VimResized * wincmd =  " auto equalize windows
 
 set encoding=utf-8
-set guifont=Sauce\ Code\ Powerline:h11
+set guifont=Sauce\ Code\ Powerline:h12
 
 " ================ General Config ====================
 
@@ -153,6 +153,7 @@ map <c-h> <c-w>h
 
 " ============= Session ================
 let g:session_autosave = 'yes'
+let g:session_autoload = 'no'
 
 " ============== Syntastic =================
 "set statusline+=%#warningmsg#
