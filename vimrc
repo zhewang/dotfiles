@@ -1,87 +1,67 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Automatic installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" ========================================
-" Vim plugin configuration
-" ========================================
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'bagrat/vim-buffet'
+Plug 'mhinz/vim-startify'
+Plug 'Yggdroot/indentLine'
 
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-scripts/TaskList.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-Plugin 'pangloss/vim-javascript'
-Plugin 'lervag/vimtex'
-"Plugin 'valloric/youcompleteme'
-" Plugin 'scrooloose/syntastic'
+Plug 'junegunn/vim-easy-align'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } | 
+    \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+    \ Plug 'scrooloose/nerdtree-project-plugin'
 
-" All of the Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
-" Put your non-Plugin stuff after this line
-""""""""""""""""""""""""""""""""""""""""""""""""
-let $PATH=$PATH . ':/usr/local/bin'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" need to instal code-minimap[https://github.com/wfxr/code-minimap]
+Plug 'wfxr/minimap.vim', { 'on': 'MinimapToggle'}
+
+" Unmanaged plugin (manually installed and updated)
+Plug '~/my-prototype-plugin'
+
+" Always load the vim-devicons as the very last one
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" Initialize plugin system
+call plug#end()
+
+" =============================================================================
+" =============================================================================
+
+" ================ Basis =============================
+syntax enable
+set encoding=utf-8
 
 " ================ GUI =============================
-syntax enable
 set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
 set colorcolumn=80
+colorscheme base16-default-dark
 
-autocmd VimResized * wincmd =  " auto equalize windows
-
-set encoding=utf-8
-set guifont=Sauce\ Code\ Powerline:h12
 
 " ================ General Config ====================
-
 set number                      "Line numbers are good
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
-
-" ================ Remove Trailing on Save =============
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-
-autocmd FileType c,cpp,java,php,ruby,python,javascript,sql autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
-" ================ Auto Update .vimrc for All Vim server ===============
-function! UpdateVimRC()
- for server in split(serverlist())
-     call remote_send(server, '<Esc>:source $MYVIMRC<CR>')
- endfor
-endfunction
-augroup myvimrchooks
-au!
-autocmd bufwritepost .vimrc call UpdateVimRC()
-augroup END
-
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
-set hidden
-
-" Change leader to a comma
-let mapleader=","
 
 " ================ Turn Off Swap Files ==============
 set noswapfile
@@ -100,92 +80,51 @@ set expandtab
 filetype plugin on
 filetype indent on
 
-"set nowrap       "Don't wrap lines
-set linebreak    "Wrap lines at convenient points
+set nowrap       "Don't wrap lines
+"set linebreak    "Wrap lines at convenient points
 
-" ================ Completion =======================
-set wildmode=list:longest
-set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-set wildignore+=*vim/backups*
-set wildignore+=*sass-cache*
-set wildignore+=*DS_Store*
-set wildignore+=vendor/rails/**
-set wildignore+=vendor/cache/**
-set wildignore+=*.gem
-set wildignore+=log/**
-set wildignore+=tmp/**
-set wildignore+=*.png,*.jpg,*.gif
-
-" ================ Scrolling ========================
-
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
-set sidescrolloff=15
-set sidescroll=1
-set guioptions-=r
-set guioptions-=L
-
-" ================ NERDTree ==============
-map <C-n> :NERDTreeToggle %<CR>
-
-" ================ vim-airline ===========
-set laststatus=2
+" ================ Plugin Settings  ======================
+let g:airline_theme = 'base16_tomorrow_night'
 let g:airline_powerline_fonts = 1
 
-" buffer
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#buffer_idx_mode = 1
-"nmap <leader>1 <Plug>AirlineSelectTab1
-"nmap <leader>2 <Plug>AirlineSelectTab2
-"nmap <leader>3 <Plug>AirlineSelectTab3
-"nmap <leader>4 <Plug>AirlineSelectTab4
-"nmap <leader>5 <Plug>AirlineSelectTab5
-"nmap <leader>6 <Plug>AirlineSelectTab6
-"nmap <leader>7 <Plug>AirlineSelectTab7
-"nmap <leader>8 <Plug>AirlineSelectTab8
-"nmap <leader>9 <Plug>AirlineSelectTab9
+let g:indentLine_enabled = 0
 
-" ============= Window =================
+" Auto save session and let session work with NERDTree
+let g:NERDTreeChDirMode = 2
+let g:startify_session_persistence = 1
+let g:startify_session_before_save = [
+            \ 'silent! NERDTreeClose'
+            \ ]
+autocmd SessionLoadpost * NERDTree
+
+
+" ================ Key Mapping ======================
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-m> :MinimapToggle<CR>
+
+" window
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" ============= Session ================
-let g:session_autosave = 'yes'
-let g:session_autoload = 'no'
+" buffer
+noremap <Tab> :bn<CR>
 
-" ============== Syntastic =================
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+" Change leader to a comma
+let mapleader=","
 
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
+" vim-buffet
+let g:buffet_show_index=1
+nmap <leader>1 <Plug>BuffetSwitch(1)
+nmap <leader>2 <Plug>BuffetSwitch(2)
+nmap <leader>3 <Plug>BuffetSwitch(3)
+nmap <leader>4 <Plug>BuffetSwitch(4)
+nmap <leader>5 <Plug>BuffetSwitch(5)
+nmap <leader>6 <Plug>BuffetSwitch(6)
+nmap <leader>7 <Plug>BuffetSwitch(7)
+nmap <leader>8 <Plug>BuffetSwitch(8)
+nmap <leader>9 <Plug>BuffetSwitch(9)
+nmap <leader>0 <Plug>BuffetSwitch(10)
 
-" =============== VimTex =============
-if !exists('g:ycm_semantic_triggers')
-    let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers.tex = [
-            \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-            \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-            \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-            \ 're!\\(include(only)?|input){[^}]*'
-            \ ]
-
-let g:vimtex_quickfix_ignore_all_warnings = 1
-
-" =============== YouCompleteMe =============
-"set completeopt-=preview  
-
-"nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>  
-"nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>  
-"nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>  
-
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'  
-"let g:ycm_confirm_extra_conf=0  
-"let g:ycm_cache_omnifunc=0  
-"let g:ycm_complete_in_comments=1  
+nmap <leader>id :IndentLinesToggle<CR>
