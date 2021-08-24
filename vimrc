@@ -49,6 +49,7 @@ Plug 'honza/vim-snippets'
 
 " Always load the vim-devicons as the very last one
 Plug 'ryanoasis/vim-devicons'
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 
 " Initialize plugin system
 call plug#end()
