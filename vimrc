@@ -25,8 +25,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } |
     \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-    \ Plug 'scrooloose/nerdtree-project-plugin' |
-    \ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    \ Plug 'scrooloose/nerdtree-project-plugin'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
