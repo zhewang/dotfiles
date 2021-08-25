@@ -11,9 +11,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'chriskempson/base16-vim'
-"Plug 'bling/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
-"Plug 'bagrat/vim-buffet'
 
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -36,6 +33,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'liuchengxu/vista.vim'
+
+if has('nvim')
+    Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+endif
+
 
 " need to instal code-minimap[https://github.com/wfxr/code-minimap]
 Plug 'wfxr/minimap.vim', { 'on': 'MinimapToggle'}
