@@ -11,16 +11,18 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
+Plug 'phaazon/hop.nvim'
 
 Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/indentLine'
 
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } |
+Plug 'scrooloose/nerdtree' |
     \ Plug 'Xuyuanp/nerdtree-git-plugin' |
     \ Plug 'scrooloose/nerdtree-project-plugin'
 
@@ -30,17 +32,13 @@ Plug 'tpope/vim-fugitive'
 " need to install ripgrep for fzf to work
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liuchengxu/vista.vim'
 
 if has('nvim')
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 endif
-
-
-" need to instal code-minimap[https://github.com/wfxr/code-minimap]
-Plug 'wfxr/minimap.vim', { 'on': 'MinimapToggle'}
 
 " delete whitespace
 Plug 'ntpeters/vim-better-whitespace'
@@ -64,7 +62,7 @@ set encoding=utf-8
 " ================ GUI =============================
 set background=dark
 set colorcolumn=88
-colorscheme base16-tomorrow-night
+colorscheme gruvbox
 
 
 " ================ General Config ====================
@@ -97,22 +95,22 @@ set nowrap       "Don't wrap lines
 "set linebreak    "Wrap lines at convenient points
 
 " ================ Plugin Settings  ======================
-"let g:airline_theme = 'base16_tomorrow_night'
-"let g:airline_powerline_fonts = 1
-"let g:buffet_powerline_separators = 1
+let g:lightline#bufferline#min_buffer_count = 2
 
 " For lightline to work
 set laststatus=2
 set showtabline=2
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], 
-      \             [ 'gitbranch', 'githunks', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'githunks', 'readonly', 'filename', 'modified'] ]
       \ },
       \ 'tabline': {
-      \   'left': [ ['buffers'] ],
-      \   'right': [ ['close'] ]
+      \   'left': [ ['buffers'] ]
+      \ },
+      \ 'component': {
+      \   'close': ''
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers'
@@ -126,8 +124,6 @@ let g:lightline = {
       \ },
       \ }
 
-let g:lightline#bufferline#min_buffer_count = 2
-
 function! LightlineGitGutter()
   if !get(g:, 'gitgutter_enabled', 0) || empty(FugitiveHead())
     return ''
@@ -135,7 +131,6 @@ function! LightlineGitGutter()
   let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
   return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
 endfunction
-
 
 let g:indentLine_enabled = 0
 
@@ -145,7 +140,7 @@ let g:startify_session_persistence = 1
 let g:startify_session_before_save = [
             \ 'silent! NERDTreeClose'
             \ ]
-autocmd SessionLoadpost * NERDTree
+"autocmd SessionLoadpost * NERDTree
 
 let g:coc_node_path = '/usr/local/bin/node'
 
@@ -165,6 +160,8 @@ let g:vista_default_executive = 'coc'
 " For example:
 let g:vista_fzf_preview = ['right:50%']
 
+" hop highlight color
+lua require'hop'.setup { HopNextKey = 'visual' }
 
 " ================ Key Mapping ======================
 " Change leader to a comma
@@ -172,7 +169,6 @@ let mapleader=","
 
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-nnoremap <C-m> :MinimapToggle<CR>
 
 " window
 nnoremap <c-j> <c-w>j
@@ -224,6 +220,14 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+"============== Hop =========================
+nmap <Leader>l :HopLine<CR>
+nmap <Leader>w :HopWord<CR>
+nmap <Leader>c :HopChar1<CR>
+nmap <Leader>C :HopChar2<CR>
+nmap <Leader>s :HopPattern<CR>
+
 
 " ======================== AutoCMD =========================
 " run gitgutter on save
