@@ -60,13 +60,14 @@ syntax enable
 set encoding=utf-8
 
 " ================ GUI =============================
+"set scl=no " do not show signcol
 set background=dark
 set colorcolumn=88
 colorscheme gruvbox
 
 
 " ================ General Config ====================
-set number                      "Line numbers are good
+"set number                      "Line numbers are good
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
@@ -132,7 +133,9 @@ function! LightlineGitGutter()
   return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
 endfunction
 
-let g:indentLine_enabled = 0
+"let g:gitgutter_signs = 0
+
+"let g:indentLine_enabled = 0
 
 " Auto save session and let session work with NERDTree
 let g:NERDTreeChDirMode = 2
@@ -198,8 +201,9 @@ let g:lightline#bufferline#number_map = {
 let g:lightline#bufferline#enable_devicons = 1
 
 nmap <leader><Tab> :IndentLinesToggle<CR>
-nmap <leader>w :ToggleWhitespace<CR>
+nmap <leader>tw :ToggleWhitespace<CR>
 nmap <leader>v :Vista!!<CR>
+nmap <leader>gs :GitGutterLineHighlightsToggle<CR>
 
 "============== COC =========================
 " Use `[g` and `]g` to navigate diagnostics
@@ -210,6 +214,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" Symbol renaming.
+nmap <silent>rn <Plug>(coc-rename)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -224,11 +230,9 @@ endfunction
 "============== Hop =========================
 nmap <Leader>l :HopLine<CR>
 nmap <Leader>w :HopWord<CR>
-nmap <Leader>c :HopChar1<CR>
-nmap <Leader>C :HopChar2<CR>
-nmap <Leader>s :HopPattern<CR>
+nmap s :HopChar1<CR>
 
 
 " ======================== AutoCMD =========================
 " run gitgutter on save
-autocmd BufWritePost * GitGutter
+"autocmd BufWritePost * GitGutter
