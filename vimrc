@@ -60,11 +60,10 @@ syntax enable
 set encoding=utf-8
 
 " ================ GUI =============================
-"set scl=no " do not show signcol
-set background=dark
+set scl=yes " always show signcol
 set colorcolumn=88
 colorscheme gruvbox
-
+set background=dark
 
 " ================ General Config ====================
 "set number                      "Line numbers are good
@@ -133,7 +132,10 @@ function! LightlineGitGutter()
   return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
 endfunction
 
+" =========== GitGutter ============
 "let g:gitgutter_signs = 0
+set updatetime=100
+command! Gqf GitGutterQuickFix | copen
 
 "let g:indentLine_enabled = 0
 
@@ -233,6 +235,12 @@ nmap <Leader>w :HopWord<CR>
 nmap s :HopChar1<CR>
 
 
+"============== vim-easy-align =========================
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 " ======================== AutoCMD =========================
 " run gitgutter on save
 "autocmd BufWritePost * GitGutter
