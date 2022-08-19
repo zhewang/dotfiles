@@ -10,6 +10,8 @@ return {
 
   ["easymotion/vim-easymotion"] = {},
 
+  ["christoomey/vim-tmux-navigator"] = {},
+
   ["folke/trouble.nvim"] = {
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
