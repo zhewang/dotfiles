@@ -2,12 +2,12 @@ env:
   # TERM: alacritty
   TERM: xterm-256color
 
-shell:
-  program: /opt/homebrew/bin/fish
-  args:
-    - -l
-    - -c
-    - "tmux attach -t base || tmux new -s base"
+# shell:
+#  program: /opt/homebrew/bin/fish
+#  args:
+#    - -l
+#    - -c
+#    - "tmux attach -t base || tmux new -s base"
 
 # Font configuration
 font:
@@ -218,6 +218,9 @@ key_bindings:
   - { key: Key6,      mods: Alt|Shift, chars: "\x1b^"                       } # Alt + ^
   - { key: Backslash, mods: Alt,       chars: "\x1b\\"                      } # Alt + \
   - { key: Backslash, mods: Alt|Shift, chars: "\x1b|"                       } # Alt + |
+
+mouse:
+  hide_when_typing: true
 
 #debug:
   # Display the time it takes to redraw each frame.
